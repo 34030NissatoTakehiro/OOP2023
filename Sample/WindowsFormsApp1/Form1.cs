@@ -27,8 +27,22 @@ namespace WindowsFormsApp1 {
             tbAns.Text = sum.ToString();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e) {
+        
 
+        private void btPow_Click(object sender, EventArgs e) {
+
+
+
+            //  for (int i = 0; i < nudY.Value; i++)
+            //  {
+            //  nudX.Value = nudX.Value * nudX.Value;
+
+
+            // }
+            double Res = Math.Pow((double)nudX.Value, (double)nudY.Value);
+            tbResult.Text = Res.ToString();
         }
+
+        
     }
 }
