@@ -20,7 +20,7 @@ namespace Ballapp {
             Application.Run(new Program());
         }
         public Program() {
-            
+            this.Text = "Ball Game";
             this.Size = new Size(800, 600);
             this.BackColor = Color.Red;
            
@@ -33,10 +33,10 @@ namespace Ballapp {
             moveTimer.Tick += MoveTimer_Tick;//デリゲート登録
 
         }
-
+        //マウスクリック時のイベントハンドラ
         private void Program_MouseClick(object sender, MouseEventArgs e) {
 
-            this.Text = "Ball Game" + "(" + (ballcount + 1) + ")";
+            this.Text = "Ball Game" + "(" + (ballcount ++) + ")";
             soccerBall = new SoccerBall(e.X -25,e.Y - 25);
             pb = new PictureBox();
             pb.Image = soccerBall.Image;
