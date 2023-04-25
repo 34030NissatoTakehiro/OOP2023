@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Ballapp {
-    class SoccerBall : Obj {
-        //  フィールド
-        
+    class Tennisball : Obj {
 
-        //コンストラクタ
-        public SoccerBall(double xp, double yp)
-            : base(xp, yp, @"pic\Soccer_Ball.png") {
+        public Tennisball(double xp, double yp)
+           : base(xp, yp, @"pic\tennis_Ball.png") {
 
 
             Random rand = new Random();
@@ -23,10 +19,7 @@ namespace Ballapp {
             int rondomY = rand.Next(1, 100);
             MoveY = (rondomY != 0 ? rondomY : 1);
         }
-        //プロパティ
-        
 
-        //メソット
         public override void Move() {
             if (PosY > 550 || PosY < 0)
             {
