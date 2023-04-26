@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Ballapp {
     class Tennisball : Obj {
@@ -12,7 +13,7 @@ namespace Ballapp {
         public Tennisball(double xp, double yp)
            : base(xp, yp, @"pic\tennis_Ball.png") {
 
-           
+
             Random rand = new Random();
 
             int randomX = rand.Next(1, 100);
@@ -23,7 +24,7 @@ namespace Ballapp {
             Ballcnt++;
         }
 
-       
+
 
         public override void Move() {
             if (PosY > 550 || PosY < 0)
@@ -43,6 +44,7 @@ namespace Ballapp {
             PosX = PosX + MoveX;
             PosY = PosY + MoveY;
         }
-        
+        public override void Move(Keys direction) {
         }
+    }
 }

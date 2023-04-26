@@ -4,17 +4,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Ballapp {
     class SoccerBall : Obj {
-     
+
         private static int ballcnt;
         public static int Ballcnt { get => ballcnt; set => ballcnt = value; }
 
         //コンストラクタ
         public SoccerBall(double xp, double yp)
             : base(xp, yp, @"pic\Soccer_Ball.png") {
-          
+
             Random rand = new Random();
 
             int randomX = rand.Next(1, 100);
@@ -25,7 +26,7 @@ namespace Ballapp {
             ballcnt++;
         }
         //プロパティ
-        
+
 
         //メソット
         public override void Move() {
@@ -42,8 +43,8 @@ namespace Ballapp {
             PosX = PosX + MoveX;
             PosY = PosY + MoveY;
         }
-        public  void BarMove(int reft, int light) {
-
+        public override void Move(Keys direction) {
+            ;
         }
     }
 }
