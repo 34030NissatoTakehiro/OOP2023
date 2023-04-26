@@ -48,14 +48,16 @@ namespace Ballapp {
             pb = new PictureBox();
             if (e.Button == MouseButtons.Left)
             {
-
+                this.Text = "Ball Game";
                 obj = new SoccerBall(e.X - 25, e.Y - 25);
+                
                 pb.Size = new Size(50, 50);//画像の表示サイズ
 
             }
             else if(e.Button == MouseButtons.Right)
            {
-               obj  = new Tennisball(e.X - 25, e.Y - 25);
+               
+                obj  = new Tennisball(e.X - 25, e.Y - 25);
                 pb.Size = new Size(50, 50);//画像の表示サイズ
 
             }
@@ -67,13 +69,10 @@ namespace Ballapp {
             pb.Parent = this;
             balls.Add(obj);
             pbs.Add(pb);
-
+            this.Text = "SoccerBall Game" + SoccerBall.Ballcnt + "Tennisball" + Tennisball.Ballcnt;
             moveTimer.Start();//タイマースタート
         }
-           
-
-        
-
+ 
         private void MoveTimer_Tick(object sender, EventArgs e) {
             for (int i = 0; i < balls.Count; i++)
             {                

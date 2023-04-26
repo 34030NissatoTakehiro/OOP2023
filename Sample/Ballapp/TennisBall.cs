@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Ballapp {
     class Tennisball : Obj {
+        private static int ballcnt;
+        public static int Ballcnt { get => ballcnt; set => ballcnt = value; }
 
         public Tennisball(double xp, double yp)
            : base(xp, yp, @"pic\tennis_Ball.png") {
 
-
+           
             Random rand = new Random();
 
             int randomX = rand.Next(1, 100);
@@ -18,7 +20,10 @@ namespace Ballapp {
 
             int rondomY = rand.Next(1, 100);
             MoveY = (rondomY != 0 ? rondomY : 1);
+            Ballcnt++;
         }
+
+       
 
         public override void Move() {
             if (PosY > 550 || PosY < 0)

@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Ballapp {
     class SoccerBall : Obj {
-        //  フィールド
-        
+     
+        private static int ballcnt;
+        public static int Ballcnt { get => ballcnt; set => ballcnt = value; }
 
         //コンストラクタ
         public SoccerBall(double xp, double yp)
             : base(xp, yp, @"pic\Soccer_Ball.png") {
-
-
+          
             Random rand = new Random();
 
             int randomX = rand.Next(1, 100);
@@ -22,6 +22,7 @@ namespace Ballapp {
 
             int rondomY = rand.Next(1, 100);
             MoveY = (rondomY != 0 ? rondomY : 1);
+            ballcnt++;
         }
         //プロパティ
         
@@ -36,11 +37,7 @@ namespace Ballapp {
             if (PosX > 750 || PosX < 0)
             {
                 MoveX = -MoveX;
-
             }
-
-
-
 
             PosX = PosX + MoveX;
             PosY = PosY + MoveY;
