@@ -18,10 +18,10 @@ namespace Ballapp {
 
             Random rand = new Random();
 
-            int randomX = rand.Next(1, 100);
+            int randomX = rand.Next(1,100);
             MoveX = (randomX != 0 ? randomX : 1);
 
-            int rondomY = rand.Next(1, 100);
+            int rondomY = rand.Next(1,100);
             MoveY = (rondomY != 0 ? rondomY : 1);
             ballcnt++;
         }
@@ -29,8 +29,11 @@ namespace Ballapp {
 
 
         //メソット
-        public override void Move() {
-            if (PosY > 550 || PosY < 0)
+        public override void Move(PictureBox pbBar, PictureBox pbBall) {
+
+            Rectangle rBar = new Rectangle(pbBar.Location.X, pbBar.Location.Y, pbBar.Width, pbBar.Height);
+            Rectangle rBall = new Rectangle(pbBall.Location.X, pbBall.Location.Y, pbBall.Width, pbBall.Height);
+            if (PosY > 550 || PosY < 0|| rBar.IntersectsWith(rBall))
             {
                 MoveY = -MoveY;
 
@@ -40,8 +43,8 @@ namespace Ballapp {
                 MoveX = -MoveX;
             }
 
-            PosX = PosX + MoveX;
-            PosY = PosY + MoveY;
+            PosX += MoveX;
+            PosY += MoveY;
         }
         public override void Move(Keys direction) {
             ;

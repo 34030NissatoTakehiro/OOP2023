@@ -14,7 +14,7 @@ namespace Ballapp {
 
         }
 
-         public override void Move() {
+         public override void Move(PictureBox pbBar, PictureBox pbBall) {
             ;
         }
 

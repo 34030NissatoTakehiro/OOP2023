@@ -39,7 +39,7 @@ namespace Ballapp {
 
 
         }
-        public abstract void Move();
+        public abstract void Move(PictureBox pbBar ,PictureBox pbBall);
         public abstract void Move(Keys direction);
     }
 
