@@ -39,8 +39,8 @@ namespace Ballapp {
             
         }
         public abstract void Move();
+      
 
-        
 
 
     }

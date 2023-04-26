@@ -42,5 +42,8 @@ namespace Ballapp {
             PosX = PosX + MoveX;
             PosY = PosY + MoveY;
         }
+        public  void BarMove(int reft, int light) {
+
+        }
     }
 }
