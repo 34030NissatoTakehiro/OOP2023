@@ -29,8 +29,8 @@ namespace ProductSample {
 
             
 
-            Console.WriteLine("今日の１０日後は" + daysAfter10.Month+"月" + daysAfter10.Day + "日です");
-            Console.WriteLine("今日の１０日前は"+ daysbefor10.Month + "月" + daysbefor10.Day + "日です");
+            Console.WriteLine("今日の１０日後は" + daysAfter10.ToString("今日は" + "yyyy年MM月dd日"));
+            Console.WriteLine("今日の１０日前は"+ daysbefor10.ToString("今日は" + "yyyy年MM月dd日"));
 
 
 
