@@ -31,8 +31,8 @@ namespace ProductSample {
 
             Console.WriteLine("今日の１０日後は" + daysAfter10.ToString("今日は" + "yyyy年MM月dd日"));
             Console.WriteLine("今日の１０日前は"+ daysbefor10.ToString("今日は" + "yyyy年MM月dd日"));
-            #endregion 
-
+            #endregion
+            #region 誕生日計算
             Console.WriteLine("誕生日を出力");
             Console.Write("西暦：");
             int year = int.Parse(Console.ReadLine());
@@ -47,8 +47,11 @@ namespace ProductSample {
             TimeSpan afterday = dateToday - birthday;
 
 
-            Console.Write("誕生日から"+ afterday.Days + "日");
+            Console.WriteLine("誕生日から"+ afterday.Days + "日");
+            #endregion
 
+            string dayofweek = birthday.ToString("dddd");
+            Console.Write("あなた生まれたのは" + dayofweek);
 
 
         }
