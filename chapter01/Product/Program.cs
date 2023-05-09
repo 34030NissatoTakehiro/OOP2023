@@ -49,10 +49,10 @@ namespace ProductSample {
 
             Console.WriteLine("誕生日から"+ afterday.Days + "日");
             #endregion
-
+            #region　曜日計算
             string dayofweek = birthday.ToString("dddd");
             Console.Write("あなた生まれたのは" + dayofweek);
-
+            #endregion
 
         }
     }
