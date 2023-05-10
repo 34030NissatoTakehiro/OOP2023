@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace DistanceConverter {
     //フィートとメートル単位変換クラス
-    public static  class FeetConverter {
+    public   class FeetConverter {
+        private const double resio = 0.3048;
 
         //メートルからフィートを求める
         public static double FromMeter(double meter) {
-            return meter / 0.3048;
+            return meter / resio;
         }
         //フィートからメートルを求める
         public static double ToMeter(double feet) {
-            return feet * 0.3048;
+            return feet * resio;
         }
     }
 }
