@@ -10,6 +10,7 @@ namespace Exercise03 {
             var sales = new SalesCounter(@"data\sales.csv");
             Console.WriteLine("1.店舗別売上");
             Console.WriteLine("２.商品カテゴリー別売上");
+            Console.WriteLine(">");
             int select = int.Parse(Console.ReadLine());
             Console.WriteLine("*****売上集計結果*****");
             if (select == 1) {
