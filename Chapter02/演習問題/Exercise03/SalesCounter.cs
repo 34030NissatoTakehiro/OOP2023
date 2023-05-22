@@ -15,13 +15,27 @@ namespace Exercise03 {
         }
         //店舗別売上求める
         public IDictionary<string, int> GetPerStoreSales() {
-           var dict = new SortedDictionary<string, int>();
+            var dict = new SortedDictionary<string, int>();
             foreach (var sale in _sales) {
-                if (dict.ContainsKey(sale.ProductCategory)) {
+                if (dict.ContainsKey(sale.ShopName)) {
                     dict[sale.ShopName] += sale.Amount;
 
                 } else {
                     dict[sale.ShopName] = sale.Amount;
+                }
+            }
+
+            return dict;
+        }
+        //カテゴリー別売上求める
+        public IDictionary<string, int> GetPerProductCategory() {
+           var dict = new SortedDictionary<string, int>();
+            foreach (var sale in _sales) {
+                if (dict.ContainsKey(sale.ProductCategory)) {
+                    dict[sale.ProductCategory] += sale.Amount;
+
+                } else {
+                    dict[sale.ProductCategory] = sale.Amount;
                 }
             }
 
