@@ -11,11 +11,11 @@ namespace Exercise01 {
 
             // 3.1.1
             Exercise1_1(numbers);
-            Console.WriteLine("-----");
+           
 
             // 3.1.2
             Exercise1_2(numbers);
-            Console.WriteLine("-----");
+            Console.WriteLine("-------");
 
             // 3.1.3
             Exercise1_3(numbers);
@@ -26,10 +26,19 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_1(List<int> numbers) {
+            var extists = numbers.Exists(n => n % 8 == 0 || n % 9 == 0);
+            if (extists == true) {
+                Console.WriteLine("存在します");
+            }else if(extists == false) {
+                Console.WriteLine("存在しません");
+            }
 
+          
         }
 
         private static void Exercise1_2(List<int> numbers) {
+      
+
         }
 
         private static void Exercise1_3(List<int> numbers) {
