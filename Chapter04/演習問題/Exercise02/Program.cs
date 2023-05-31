@@ -39,16 +39,31 @@ namespace Exercise02 {
         
         }
         static YearMonth FindFirst21C(YearMonth[] yms) {
-            return 
+            foreach (var n in yms) {
+                if(n.Is21Century) {
+                    return n;
+                }
+           
+            }
+            return null;
+
         }
 
 
         private static void Exercise2_4(YearMonth[] ymCollection) {
-          
+            var ym = FindFirst21C(ymCollection);
+            if (ym ==null) {
+                Console.WriteLine("21世紀ではありません。");
+            }
+            Console.WriteLine(ym);
         }
 
         private static void Exercise2_5(YearMonth[] ymCollection) {
-       
+            var ym = ymCollection.Select(n => n.AddOneMonth()).ToArray();
+            foreach (var i in ym) {
+                Console.WriteLine(i);
+            }
+          
         }
     }
 }
