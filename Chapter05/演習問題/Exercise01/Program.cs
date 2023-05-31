@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace Exercise01 {
     class Program {
         static void Main(string[] args) {
-            Console.WriteLine("文字列1：");
+            Console.Write("文字列1：");
             var s1 = Console.ReadLine();
 
-            Console.WriteLine("文字列2：");
+            Console.Write("文字列2：");
             var s2 = Console.ReadLine();
 
             if (String.Compare(s1, s2, ignoreCase: true) == 0) {
