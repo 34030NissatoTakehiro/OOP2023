@@ -26,7 +26,8 @@ namespace Exercise3 {
         }
 
         private static void Exercise3_1(string text) {
-           
+            var count = text.Count(s => s ==' ');
+            Console.WriteLine(count);
         }
 
         private static void Exercise3_2(string text) {
