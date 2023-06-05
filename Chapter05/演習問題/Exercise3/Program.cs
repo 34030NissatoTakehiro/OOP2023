@@ -22,11 +22,11 @@ namespace Exercise3 {
             Console.WriteLine("-----");
 
             Exercise3_5(text);
-          
+
         }
 
         private static void Exercise3_1(string text) {
-            var count = text.Count(s => s ==' ');
+            var count = text.Count(c => c == ' ');
             Console.WriteLine(count);
         }
 
@@ -39,13 +39,13 @@ namespace Exercise3 {
             var count = text.Split().Count();
             Console.WriteLine(count);
         }
-        
+
         private static void Exercise3_4(string text) {
-            var where = text.Split(' ');
+            var where = text.Split(' ').Where(s => s.Length <= 4);
             foreach (var s in where) {
-                if (s.Length <= 4) {
-                    Console.WriteLine(s);
-                }
+
+                Console.WriteLine(s);
+
             }
         }
 
