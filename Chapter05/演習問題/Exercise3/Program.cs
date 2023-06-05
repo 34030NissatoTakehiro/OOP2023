@@ -51,8 +51,9 @@ namespace Exercise3 {
 
         private static void Exercise3_5(string text) {
             var tex = text.Split(' ').ToArray();
-            StringBuilder sb = new StringBuilder();
-            foreach (var s in tex) {
+            StringBuilder sb = new StringBuilder(tex[0]);
+           
+            foreach (var s in tex.Skip(1)) {
                 sb.Append(s + ' ');
 
             }
