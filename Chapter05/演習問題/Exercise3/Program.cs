@@ -50,7 +50,14 @@ namespace Exercise3 {
         }
 
         private static void Exercise3_5(string text) {
-           
+            var tex = text.Split(' ').ToArray();
+            StringBuilder sb = new StringBuilder();
+            foreach (var s in tex) {
+                sb.Append(s + ' ');
+
+            }
+            var word = sb.ToString();
+            Console.WriteLine(word);
 
 
         }
