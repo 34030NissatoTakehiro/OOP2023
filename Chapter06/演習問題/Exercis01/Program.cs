@@ -39,6 +39,13 @@ namespace Exercis01 {
         }
 
         private static void Exercise1_3(int[] numbers) {
+            var str = numbers.Select(s => s.ToString());
+            foreach (var item in str) {
+                Console.WriteLine(item);
+            }
+
+
+
 
 
 
