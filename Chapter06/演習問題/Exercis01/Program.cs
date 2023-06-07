@@ -43,16 +43,13 @@ namespace Exercis01 {
             foreach (var item in str) {
                 Console.WriteLine(item);
             }
-
-
-
-
-
-
-
         }
 
         private static void Exercise1_4(int[] numbers) {
+            var nums = numbers.OrderBy(s => s).Take(3);
+            foreach (var item in nums) {
+                Console.WriteLine(item);
+            }
 
         }
 
