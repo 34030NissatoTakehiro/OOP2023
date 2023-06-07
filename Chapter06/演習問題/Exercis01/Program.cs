@@ -54,8 +54,12 @@ namespace Exercis01 {
         }
 
         private static void Exercise1_5(int[] numbers) {
-            
-        
-         }
+            var distanct = numbers.Distinct().Count(n => n > 10);
+
+            Console.WriteLine(distanct);
+
+
+
+        }
     }
 }
