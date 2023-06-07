@@ -31,21 +31,26 @@ namespace Exercis01 {
         }
 
         private static void Exercise1_2(int[] numbers) {
-           
+            var El = numbers.Skip(numbers.Length - 2);
+            foreach (var item in El) {
+                Console.WriteLine("最後から二番目の要素：" + item);
+            }
+
         }
 
         private static void Exercise1_3(int[] numbers) {
-           
-         
+
+
 
 
         }
 
         private static void Exercise1_4(int[] numbers) {
-            
+
         }
 
         private static void Exercise1_5(int[] numbers) {
-            
+
+        }
     }
 }
