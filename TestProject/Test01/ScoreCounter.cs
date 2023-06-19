@@ -21,13 +21,13 @@ namespace Test01 {
 
             foreach (string line in lines) {//すべての行から1行ずつ取り出す
                 var items = line.Split(',');//区切りで項目別に分ける
-                var syukei = new Student {//saleインスタンスの生成
+                var syukei = new Student {//syukeiインスタンスの生成
                     Name = items[0],
                     Subject = items[1],
                     Score = int.Parse(items[2]),
 
                 };
-                subject.Add(syukei);//Saleインスタンスをコレクションに追加
+                subject.Add(syukei);//syukeiインスタンスをコレクションに追加
             }
 
 
