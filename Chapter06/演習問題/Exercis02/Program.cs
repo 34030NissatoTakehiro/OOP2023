@@ -61,10 +61,10 @@ namespace Exercis02 {
         }
 
         private static void Exercise2_4(List<Book> books) {
-            var bok = books.Where(p => p.Price >= 4000).Take(1);
-            foreach (var item in bok) {
-                Console.WriteLine(item.Title);
-            }
+            var bok = books.FirstOrDefault(p => p.Price >= 4000);
+           
+                Console.WriteLine("{0},{1}",bok.Price,bok.Pages);
+            
 
         }
 
@@ -82,7 +82,7 @@ namespace Exercis02 {
         }
 
         private static void Exercise2_7(List<Book> books) {
-            var c = books.Where(x => x.Title.Contains("C#") && x.Pages >= 500);
+            var c = books.Where(x => x.Title.Contains("C#") && x.Pages <= 500);
             foreach (var item in c) {
                 Console.WriteLine(item.Title);
             }
