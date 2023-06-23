@@ -26,7 +26,7 @@ var flowerdict = new Dictionary<string, int>() {
             //辞書に登録
             Console.WriteLine("県庁所在地の登録");
             var citys
-               = new Dictionary<string, string>();
+               = new Dictionary<string, Cityinfo>();
 
 
             Console.Write("県；");
@@ -34,40 +34,61 @@ var flowerdict = new Dictionary<string, int>() {
 
 
             while (pref != "999") {
+                var cityinfo = new Cityinfo();
+
+
                 Console.Write("県庁所在地；");
-                string city = Console.ReadLine();
+                cityinfo.City = Console.ReadLine();
+
+                Console.Write("人口;");
+                cityinfo.Population = int.Parse(Console.ReadLine());
 
                 if (citys.ContainsKey(pref)) {
                     Console.WriteLine("既に登録してあります。　　上書き：Y 上書きなし：N");
                     var hantei = Console.ReadLine();
                     if (hantei == "Y") {
-                        citys[pref] = city;
+                        citys[pref] =cityinfo;
                     }
                 } else {
-                    citys.Add(pref, city);
+
+                    citys.Add(pref, cityinfo);
 
                 }
+ 
                 Console.Write("県；");
                 pref = Console.ReadLine();
-
-                //辞書へ登録
 
             }
             Console.WriteLine("1.一覧表示  2.県名指定");
             var select = Console.ReadLine();
             if (select =="1") {
-                foreach (var item in citys) {
-                    Console.WriteLine("{0}({1})", item.Key, item.Value);
+                var kouzyunn = citys.OrderByDescending(x=> x.Value.Population);
+                foreach (var item in kouzyunn) {
+                   
+                    Console.WriteLine("{0}【{1}(人口:{2})】", item.Key, item.Value.City,item.Value.Population);
+                     
                 }
             }
             else{
                 Console.WriteLine("県名を入力");
                 var ken = Console.ReadLine();
-                Console.WriteLine(citys[ken]);
+                Console.WriteLine(citys[ken].City + citys[ken].Population);
 
             }
            
 
         }
+        
+    }
+    class Cityinfo {
+      
+
+      
+
+       public string City { get; set; }//都市
+       public  int Population { get; set; }//人口
+
+       
+
     }
 }
