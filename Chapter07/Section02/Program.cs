@@ -65,13 +65,13 @@ var flowerdict = new Dictionary<string, int>() {
             Console.WriteLine("1.一覧表示  2.県名指定");
             var select = Console.ReadLine();
             if (select == "1") {
-                var kouzyunn = citys.OrderByDescending(x => x.Value.Population);
+                //var kouzyunn = citys.OrderByDescending(x => x.Value.Population);
+                
 
-
-                foreach (var s in kouzyunn) {
+                foreach (var s in citys) {
                     Console.WriteLine(s.Key + "県");
 
-                    foreach (var item in s.Value) {
+                    foreach (var item in s.Value.OrderByDescending(x=> x.Population)) {
 
                         Console.WriteLine("【{0}(人口:{1})】", item.City, item.Population);
 
@@ -81,7 +81,7 @@ var flowerdict = new Dictionary<string, int>() {
             } else {
                 Console.WriteLine("県名を入力");
                 var ken = Console.ReadLine();
-                foreach (var v in citys[ken]) {
+                foreach (var v in citys[ken].OrderByDescending(g => g.Population)) {
                     Console.WriteLine("{0}:{1}人", v.City, v.Population);
                 }
 
@@ -101,5 +101,5 @@ var flowerdict = new Dictionary<string, int>() {
         public int Population { get; set; }//人口
 
 
-
     }
+}
