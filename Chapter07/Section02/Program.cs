@@ -47,42 +47,44 @@ var flowerdict = new Dictionary<string, int>() {
                     //Console.WriteLine("追加しますか？　　追加：Y 追加なし：N");
                     //var hantei = Console.ReadLine();
                     //if (hantei == "Y") {
-                        citys[pref].Add(cityinfo);
-                    
+                    citys[pref].Add(cityinfo);
+
                 } else {
 
-                    citys[pref] = new List<Cityinfo> {cityinfo };
+                    citys[pref] = new List<Cityinfo> { cityinfo };
 
                 }
-              
+
                 Console.Write("県；");
                 pref = Console.ReadLine();
 
 
-                
+
 
             }
             Console.WriteLine("1.一覧表示  2.県名指定");
             var select = Console.ReadLine();
             if (select == "1") {
-                //var kouzyunn = citys.OrderByDescending(x => x.Value.Population);
-                foreach (var s in citys) {
-                    Console.WriteLine(s.Key+"県");
+                var kouzyunn = citys.OrderByDescending(x => x.Value.Population);
 
-                    foreach (var item in s.Value  ) {
 
-                        Console.WriteLine("【{0}(人口:{1})】",item.City, item.Population);
+                foreach (var s in kouzyunn) {
+                    Console.WriteLine(s.Key + "県");
+
+                    foreach (var item in s.Value) {
+
+                        Console.WriteLine("【{0}(人口:{1})】", item.City, item.Population);
 
                     }
                 }
-                
+
             } else {
                 Console.WriteLine("県名を入力");
                 var ken = Console.ReadLine();
-                foreach (var v in citys[pref]) {
-                    Console.WriteLine("{0}:{1}人" + v.City, v.Population);
+                foreach (var v in citys[ken]) {
+                    Console.WriteLine("{0}:{1}人", v.City, v.Population);
                 }
-                Console.WriteLine( citys[ken]);
+
 
             }
 
@@ -101,4 +103,3 @@ var flowerdict = new Dictionary<string, int>() {
 
 
     }
-}
