@@ -1,14 +1,15 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Section03 {
+namespace Exercise02 {
     // List 7-19
     // 略語と対応する日本語を管理するクラス
-    class Abbreviations {
+    class Abbreviations : IEnumerable<KeyValuePair<string, string>> {
         private Dictionary<string, string> _dict = new Dictionary<string, string>();
 
         // コンストラクタ
@@ -30,6 +31,8 @@ namespace Section03 {
             }
         }
 
+       
+
         // 日本語から対応する省略語を取り出す
         public string ToAbbreviation(string japanese) {
             return _dict.FirstOrDefault(x => x.Value == japanese).Key;
@@ -41,6 +44,26 @@ namespace Section03 {
                 if (item.Value.Contains(substring))
                     yield return item;
             }
+        }
+
+        //7.2.1
+        public int Count {
+            get {
+                return _dict.Count;
+            }
+        }
+        //7.2.2
+        public bool Remove(string abb) {
+           
+            return _dict.Remove(abb) ;
+        }
+
+        public IEnumerator<KeyValuePair<string, string>> GetEnumerator() {
+            return ((IEnumerable<KeyValuePair<string, string>>)_dict).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return ((IEnumerable)_dict).GetEnumerator();
         }
     }
 }
