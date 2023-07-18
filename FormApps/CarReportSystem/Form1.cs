@@ -17,9 +17,26 @@ namespace CarReportSystem {
         public Form1() {
             InitializeComponent();
             dgvCarReports.DataSource = CarReports;
+          
         }
+        //ステータスラベルの表示
+        private void satasLabelDisp(string msg ="") {
+            tsInfoText.Text = msg;
+        }
+
         //追加ボタン　クリック時イベントハンドラー
         private void btAddReport_Click(object sender, EventArgs e) {
+            satasLabelDisp();//ステートラベル非表示
+            if (cbAuthor.Text.Equals("")) {
+                satasLabelDisp( "記録者入力しましょう");
+                return;
+            } else if (cbCarName.Text.Equals("")) {
+                satasLabelDisp( "車名を入力してください。");
+                return;
+            } else {
+                satasLabelDisp();
+            }
+
             CarReport car = new CarReport() {
                 Date = dtpDate.Value,
                 Author = cbAuthor.Text,
@@ -29,9 +46,24 @@ namespace CarReportSystem {
                 Maker = getSelectMaker(),
                
             };
+
+
+            btAddReport.Enabled = true;
+
+
             CarReports.Add(car);
+            cbAuthor.Items.Add(cbAuthor.Text);
+            cbCarName.Items.Add(cbCarName.Text);
+            Clear();
+            dgvCarReports.ClearSelection();
 
-
+          
+                btDeleteReport.Enabled = false;
+                btModifyReport.Enabled = false;
+               
+              
+              
+            
         }
         private CarReport.MakerGroup getSelectMaker() {
             //int tag = 0;
@@ -108,11 +140,27 @@ namespace CarReportSystem {
             DataGridViewSelectedRowCollection src = dgvCarReports.SelectedRows;
             for (int i = src.Count - 1; i >= 0; i--) {
                 dgvCarReports.Rows.RemoveAt(src[i].Index);
+
             }
+            if (dgvCarReports.Rows.Count==0) {
+                btDeleteReport.Enabled = false;
+                btModifyReport.Enabled = false;
+            }
+
+            btModifyReport.Enabled = false;
+            btDeleteReport.Enabled = false;
+
+            Clear();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReports.Columns[5].Visible = false;
+           
+            btModifyReport.Enabled = false;
+            btDeleteReport.Enabled=false;
+          
+
+
         }
 
 
@@ -125,9 +173,20 @@ namespace CarReportSystem {
             cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
             tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
             pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
+            btModifyReport.Enabled = true;
+            btDeleteReport.Enabled = true;
         }
 
         private void btModifyReport_Click(object sender, EventArgs e) {
+            if (cbAuthor.Text.Equals("")) {
+                satasLabelDisp("記録者入力しましょう");
+                return;
+            } else if (cbCarName.Text.Equals("")) {
+                satasLabelDisp("車名を入力してください。");
+                return;
+            } else {
+                satasLabelDisp();
+            }
             dgvCarReports.CurrentRow.Cells[0].Value = dtpDate.Value;
             dgvCarReports.CurrentRow.Cells[1].Value = cbAuthor.Text;
             dgvCarReports.CurrentRow.Cells[2].Value = getSelectMaker();
@@ -137,7 +196,31 @@ namespace CarReportSystem {
 
 
         }
+        private void Clear() {
+            cbAuthor.Text = "";
+            cbCarName.Text = "";
+            gbMaker.Text ="";
+            tbReport.Text = "";
+            pbCarImage.Image = null;
+            foreach (var item in gbMaker.Controls) {
+                ((RadioButton)item).Checked = false;
+            }
+        }
 
       
+
+        private void 終了XToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
+        }
+
+        private void バージョン設定ToolStripMenuItem_Click(object sender, EventArgs e) {
+           var vf = new VersionForm();
+            vf. ShowDialog();//モーダルダイアログとして表示
+        }
+
+        private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
+            cdColor.ShowDialog();
+            this.BackColor = cdColor.Color;
+        }
     }
 }
