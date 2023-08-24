@@ -25,7 +25,7 @@ namespace CarReportSystem {
         private void satasLabelDisp(string msg = "") {
             tsInfoText.Text = msg;
         }
-            
+
 
         //追加ボタン　クリック時イベントハンドラー
         private void btAddReport_Click(object sender, EventArgs e) {
@@ -245,6 +245,18 @@ namespace CarReportSystem {
 
         private void tmTimeUpdate_Tick(object sender, EventArgs e) {
             tsTimeDisp.Text = DateTime.Now.ToString("HH時mm分ss秒");
+        }
+
+        private void 保存SToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (sfdCarRepoSave.ShowDialog() == DialogResult.OK) {
+
+            }
+        }
+
+        private void 開くOToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (ofbCarRepoOpen.ShowDialog() == DialogResult.OK) {
+
+            }
         }
     }
 }
