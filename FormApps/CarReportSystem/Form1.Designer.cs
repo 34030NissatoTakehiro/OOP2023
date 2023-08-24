@@ -24,6 +24,7 @@ namespace CarReportSystem {
         /// コード エディターで変更しないでください。
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -67,11 +68,15 @@ namespace CarReportSystem {
             this.tsInfoText = new System.Windows.Forms.ToolStripStatusLabel();
             this.cdColor = new System.Windows.Forms.ColorDialog();
             this.btScaleChange = new System.Windows.Forms.Button();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.tsTimeDisp = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tmTimeUpdate = new System.Windows.Forms.Timer(this.components);
             this.gbMaker.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReports)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCarImage)).BeginInit();
             this.menuItems.SuspendLayout();
             this.statusDisp.SuspendLayout();
+            this.toolStripContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -489,6 +494,7 @@ namespace CarReportSystem {
             // statusDisp
             // 
             this.statusDisp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsTimeDisp,
             this.tsInfoText});
             this.statusDisp.Location = new System.Drawing.Point(0, 973);
             this.statusDisp.Name = "statusDisp";
@@ -499,8 +505,8 @@ namespace CarReportSystem {
             // tsInfoText
             // 
             this.tsInfoText.Name = "tsInfoText";
-            this.tsInfoText.Size = new System.Drawing.Size(118, 17);
-            this.tsInfoText.Text = "toolStripStatusLabel1";
+            this.tsInfoText.Size = new System.Drawing.Size(59, 17);
+            this.tsInfoText.Text = "プロパティー";
             // 
             // btScaleChange
             // 
@@ -513,12 +519,35 @@ namespace CarReportSystem {
             this.btScaleChange.UseVisualStyleBackColor = true;
             this.btScaleChange.Click += new System.EventHandler(this.btScaleChange_Click);
             // 
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(150, 150);
+            this.toolStripContainer1.Location = new System.Drawing.Point(1152, 973);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.Size = new System.Drawing.Size(150, 175);
+            this.toolStripContainer1.TabIndex = 15;
+            this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // tsTimeDisp
+            // 
+            this.tsTimeDisp.Name = "tsTimeDisp";
+            this.tsTimeDisp.Size = new System.Drawing.Size(55, 17);
+            this.tsTimeDisp.Text = "時刻表示";
+            // 
+            // tmTimeUpdate
+            // 
+            this.tmTimeUpdate.Tick += new System.EventHandler(this.tmTimeUpdate_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(1314, 995);
+            this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.btScaleChange);
             this.Controls.Add(this.statusDisp);
             this.Controls.Add(this.btDeleteReport);
@@ -557,6 +586,8 @@ namespace CarReportSystem {
             this.menuItems.PerformLayout();
             this.statusDisp.ResumeLayout(false);
             this.statusDisp.PerformLayout();
+            this.toolStripContainer1.ResumeLayout(false);
+            this.toolStripContainer1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -607,6 +638,9 @@ namespace CarReportSystem {
         private System.Windows.Forms.ToolStripMenuItem バージョン設定ToolStripMenuItem;
         private System.Windows.Forms.ColorDialog cdColor;
         private System.Windows.Forms.Button btScaleChange;
+        private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+        private System.Windows.Forms.ToolStripStatusLabel tsTimeDisp;
+        private System.Windows.Forms.Timer tmTimeUpdate;
     }
 }
 

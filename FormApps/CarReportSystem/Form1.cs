@@ -25,6 +25,7 @@ namespace CarReportSystem {
         private void satasLabelDisp(string msg = "") {
             tsInfoText.Text = msg;
         }
+            
 
         //追加ボタン　クリック時イベントハンドラー
         private void btAddReport_Click(object sender, EventArgs e) {
@@ -143,12 +144,15 @@ namespace CarReportSystem {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
+            tsInfoText.Text = "";//テキスト初期化
+            tsTimeDisp.Text = DateTime.Now.ToString("HH時mm分ss秒");
+            tmTimeUpdate.Start();
             dgvCarReports.Columns[5].Visible = false;
 
             btModifyReport.Enabled = false;
             btDeleteReport.Enabled = false;
             //設定ファイルを逆シリアル化して背景を設定
-            using(var reader = XmlReader.Create("settings.xml")) {
+            using (var reader = XmlReader.Create("settings.xml")) {
                 var serializer = new XmlSerializer(typeof(Settings));
                 settings = serializer.Deserialize(reader) as Settings;
                 BackColor = Color.FromArgb(settings.MainFormColor);
@@ -219,7 +223,7 @@ namespace CarReportSystem {
                 this.BackColor = cdColor.Color;
                 settings.MainFormColor = cdColor.Color.ToArgb();
             }
-           
+
         }
 
         private void btScaleChange_Click(object sender, EventArgs e) {
@@ -237,6 +241,10 @@ namespace CarReportSystem {
                 var seriarize = new XmlSerializer(settings.GetType());
                 seriarize.Serialize(write, settings);
             }
+        }
+
+        private void tmTimeUpdate_Tick(object sender, EventArgs e) {
+            tsTimeDisp.Text = DateTime.Now.ToString("HH時mm分ss秒");
         }
     }
 }
