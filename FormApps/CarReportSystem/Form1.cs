@@ -149,6 +149,10 @@ namespace CarReportSystem {
             tsInfoText.Text = "";//テキスト初期化
             tsTimeDisp.Text = DateTime.Now.ToString("HH時mm分ss秒");
             tmTimeUpdate.Start();
+
+            dgvCarReports.RowsDefaultCellStyle.BackColor = Color.Yellow;
+            dgvCarReports.AlternatingRowsDefaultCellStyle.BackColor = Color.Pink;
+
             dgvCarReports.Columns[5].Visible = false;
 
             btModifyReport.Enabled = false;
@@ -163,20 +167,8 @@ namespace CarReportSystem {
 
         //レコード選択
         private void dgvCarReports_CellContentClick(object sender, DataGridViewCellEventArgs e) {
-            if (0 < dgvCarReports.RowCount) {
-
-                dgvCarReports.Columns[5].Visible = false;
-
-                dtpDate.Text = dgvCarReports.CurrentRow.Cells[0].Value.ToString();
-                cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
-                setSelectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
-                cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
-                tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
-                pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
-
-                btModifyReport.Enabled = true;
-                btDeleteReport.Enabled = true;
-            }
+            
+        
         }
 
         private void btModifyReport_Click(object sender, EventArgs e) {
@@ -281,16 +273,15 @@ namespace CarReportSystem {
                         CarReports = (BindingList<CarReport>)bf.Deserialize(fs);
                         dgvCarReports.DataSource = null;
                         dgvCarReports.DataSource = CarReports;
+                        dgvCarReports.Columns[5].Visible = false;
+                        cbAuthor.Items.Clear();
+                        cbCarName.Items.Clear();
+                        Clear();
                         foreach (var s in CarReports ){
                             setCbAuther(s.Author);
                             setCbCarName(s.CarName);
                         }
-                     
-
-
-                      
-                           
-                        
+  
                     }
 
                 }
@@ -301,6 +292,21 @@ namespace CarReportSystem {
             }
         }
 
-     
+        private void dgvCarReports_CellClick(object sender, DataGridViewCellEventArgs e) {
+            if (0 < dgvCarReports.RowCount) {
+
+                dgvCarReports.Columns[5].Visible = false;
+
+                dtpDate.Text = dgvCarReports.CurrentRow.Cells[0].Value.ToString();
+                cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
+                setSelectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
+                cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
+                tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
+                pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
+
+                btModifyReport.Enabled = true;
+                btDeleteReport.Enabled = true;
+            }
+        }
     }
 }
