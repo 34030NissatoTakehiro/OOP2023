@@ -21,7 +21,7 @@ namespace CarReportSystem {
         Settings settings = new Settings();
         public Form1() {
             InitializeComponent();
-            dgvCarReports.DataSource = CarReports;
+           // dgvCarReports.DataSource = CarReports;
         }
         //ステータスラベルの表示
         private void satasLabelDisp(string msg = "") {
@@ -307,6 +307,19 @@ namespace CarReportSystem {
                 btModifyReport.Enabled = true;
                 btDeleteReport.Enabled = true;
             }
+        }
+
+        private void carReportTableBindingNavigatorSaveItem_Click(object sender, EventArgs e) {
+            this.Validate();
+            this.carReportTableBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202306DataSet);
+
+        }
+        //接続ボタンのイベントハンドラー
+        private void btConnection_Click(object sender, EventArgs e) {
+            // TODO: このコード行はデータを 'infosys202306DataSet.CarReportTable' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            this.carReportTableTableAdapter.Fill(this.infosys202306DataSet.CarReportTable);
+
         }
     }
 }
