@@ -18,7 +18,7 @@ namespace CarReportSystem {
         BindingList<CarReport> CarReports = new BindingList<CarReport>();
         private int size;
         //設定情報保存用オブジェクト
-        Settings settings = new Settings();
+        Settings settings = Settings.getInstance();
         public Form1() {
             InitializeComponent();
            // dgvCarReports.DataSource = CarReports;
