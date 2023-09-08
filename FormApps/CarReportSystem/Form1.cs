@@ -42,17 +42,30 @@ namespace CarReportSystem {
                 satasLabelDisp();
             }
 
-            CarReport car = new CarReport() {
-                Date = dtpDate.Value,
-                Author = cbAuthor.Text,
-                Report = tbReport.Text,
-                CarName = cbCarName.Text,
-                CarImage = pbCarImage.Image,
-                Maker = getSelectMaker(),
-            };
-            btAddReport.Enabled = true;
-            CarReports.Add(car);
-            setCbAuther(cbAuthor.Text);
+            //CarReport car = new CarReport() {
+            //    Date = dtpDate.Value,
+            //    Author = cbAuthor.Text,
+            //    Report = tbReport.Text,
+            //    CarName = cbCarName.Text,
+            //    CarImage = pbCarImage.Image,
+            //    Maker = getSelectMaker(),
+            //};
+
+            DataRow newRow = infosys202306DataSet.CarReportTable.NewRow();
+            newRow[1] = dtpDate.Value;
+            newRow[2] = cbAuthor.Text;
+            newRow[3] = getSelectMaker();
+            newRow[4] = cbCarName.Text;
+            newRow[5] = tbReport.Text;
+            newRow[6] = ImageToByteArray(pbCarImage.Image);
+
+            infosys202306DataSet.CarReportTable.Rows.Add(newRow);
+            this.carReportTableTableAdapter.Update(infosys202306DataSet.CarReportTable);
+
+
+
+             setCbAuther(cbAuthor.Text);
+            setCbCarName(cbCarName.Text);
             Clear();
             dgvCarReports.ClearSelection();
             btDeleteReport.Enabled = false;
@@ -127,24 +140,28 @@ namespace CarReportSystem {
             }
             ofdimageFileOpen.ShowDialog();
         }
-
+        //削除ボタンのイベントハンドラ
         private void btDeleteReport_Click(object sender, EventArgs e) {
-            DataGridViewSelectedRowCollection src = dgvCarReports.SelectedRows;
-            for (int i = src.Count - 1; i >= 0; i--) {
-                dgvCarReports.Rows.RemoveAt(src[i].Index);
-            }
+              //DataGridViewSelectedRowCollection src = dgvCarReports.SelectedRows;
+            //    for (int i = src.Count - 1; i >= 0; i--) {
+            //        dgvCarReports.Rows.RemoveAt(src[i].Index);
+            //    }
 
-            if (dgvCarReports.Rows.Count == 0) {
-                btDeleteReport.Enabled = false;
-                btModifyReport.Enabled = false;
-            }
+            //    if (dgvCarReports.Rows.Count == 0) {
+            //        btDeleteReport.Enabled = false;
+            //        btModifyReport.Enabled = false;
+            //    }
 
-            btModifyReport.Enabled = false;
-            btDeleteReport.Enabled = false;
+            //    btModifyReport.Enabled = false;
+            //    btDeleteReport.Enabled = false;
 
-            Clear();
+            //    Clear();
+            //}
+            dgvCarReports.Rows.RemoveAt(dgvCarReports.CurrentRow.Index);
+            this.carReportTableBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202306DataSet);
+
         }
-
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReports.Columns[6].Visible = false;
 
@@ -203,15 +220,6 @@ namespace CarReportSystem {
             this.Validate();
             this.carReportTableBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.infosys202306DataSet);
-
-            //if (dgvCarReports.Rows.Count != 0) {
-            //    dgvCarReports.CurrentRow.Cells[0].Value = dtpDate.Value;
-            //    dgvCarReports.CurrentRow.Cells[1].Value = cbAuthor.Text;
-            //    dgvCarReports.CurrentRow.Cells[2].Value = getSelectMaker();
-            //    dgvCarReports.CurrentRow.Cells[3].Value = cbCarName.Text;
-            //    dgvCarReports.CurrentRow.Cells[4].Value = tbReport.Text;
-            //    dgvCarReports.CurrentRow.Cells[5].Value = pbCarImage.Image;
-            //}
         }
 
         private void Clear() {
@@ -287,31 +295,7 @@ namespace CarReportSystem {
         }
 
         private void 開くOToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (ofbCarRepoOpen.ShowDialog() == DialogResult.OK) {
-                try {
-                    //逆シリアル化バイナリ形式🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵🐵
-                    var bf = new BinaryFormatter();
-                    using (FileStream fs = File.Open(ofbCarRepoOpen.FileName, FileMode.Open, FileAccess.Read)) {
-                        CarReports = (BindingList<CarReport>)bf.Deserialize(fs);
-                        dgvCarReports.DataSource = null;
-                        dgvCarReports.DataSource = CarReports;
-                        dgvCarReports.Columns[5].Visible = false;
-                        cbAuthor.Items.Clear();
-                        cbCarName.Items.Clear();
-                        Clear();
-                        foreach (var s in CarReports) {
-                            setCbAuther(s.Author);
-                            setCbCarName(s.CarName);
-                        }
-
-                    }
-
-                }
-                catch (Exception ex) {
-
-
-                }
-            }
+           
         }
 
 
