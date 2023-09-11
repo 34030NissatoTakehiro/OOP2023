@@ -13,13 +13,13 @@ using System.Xml;
 using System.Xml.Serialization;
 
 namespace CarReportSystem {
-    public partial class Form1 : Form {
+    public partial class btAutherSearch : Form {
         //管理用データ
         BindingList<CarReport> CarReports = new BindingList<CarReport>();
         private int size;
         //設定情報保存用オブジェクト
         Settings settings = Settings.getInstance();
-        public Form1() {
+        public btAutherSearch() {
             InitializeComponent();
             // dgvCarReports.DataSource = CarReports;
         }
@@ -360,6 +360,16 @@ namespace CarReportSystem {
                 setCbAuther(carRepot.Auther);
                 setCbCarName(carRepot.CarName);
             }
+        }
+        private void btAutherSeachi_Click(object sender, EventArgs e) {
+            carReportTableTableAdapter.FillByAuther(this.infosys202306DataSet.CarReportTable,tbAutherSeach.Text);
+        }
+        private void btCarNameSearch_Click(object sender, EventArgs e) {
+            carReportTableTableAdapter.FillByCarName(this.infosys202306DataSet.CarReportTable, tbCarNameSeach.Text);
+        }
+
+        private void btDateTimeSeach_Click(object sender, EventArgs e) {
+          //  carReportTableTableAdapter.FillByDateTime(this.infosys202306DataSet.CarReportTable, dateTimePicker2.Value);
         }
     }
 }
