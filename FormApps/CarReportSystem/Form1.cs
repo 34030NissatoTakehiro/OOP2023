@@ -295,10 +295,12 @@ namespace CarReportSystem {
         }
 
         private void 開くOToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (ofbCarRepoOpen.ShowDialog() == DialogResult.OK) {
+          
+           if (ofbCarRepoOpen.ShowDialog() == DialogResult.OK) {
                 try {
                     //逆シリアル化バイナリ形式
                     var bf = new BinaryFormatter();
+            
                     using (FileStream fs = File.Open(ofbCarRepoOpen.FileName, FileMode.Open, FileAccess.Read)) {
                         CarReports = (BindingList<CarReport>)bf.Deserialize(fs);
                         dgvCarReports.DataSource = null;
@@ -320,8 +322,8 @@ namespace CarReportSystem {
 
                 }
             }
-        
-    }
+
+        }
 
 
         private void dgvCarReports_CellClick(object sender, DataGridViewCellEventArgs e) {
@@ -372,7 +374,9 @@ namespace CarReportSystem {
         }
 
         //接続ボタンのイベントハンドラー
-        private void btConnection_Click(object sender, EventArgs e) {
+       
+
+        private void dB接続ToolStripMenuItem_Click(object sender, EventArgs e) {
             // TODO: このコード行はデータを 'infosys202306DataSet.CarReportTable' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
             this.carReportTableTableAdapter.Fill(this.infosys202306DataSet.CarReportTable);
             dgvCarReports.ClearSelection();//選択解除
@@ -381,7 +385,6 @@ namespace CarReportSystem {
                 setCbAuther(carRepot.Auther);
                 setCbCarName(carRepot.CarName);
             }
-            
         }
     }
 }
