@@ -64,7 +64,7 @@ namespace CarReportSystem {
 
 
 
-             setCbAuther(cbAuthor.Text);
+            setCbAuther(cbAuthor.Text);
             setCbCarName(cbCarName.Text);
             Clear();
             dgvCarReports.ClearSelection();
@@ -142,7 +142,7 @@ namespace CarReportSystem {
         }
         //削除ボタンのイベントハンドラ
         private void btDeleteReport_Click(object sender, EventArgs e) {
-              //DataGridViewSelectedRowCollection src = dgvCarReports.SelectedRows;
+            //DataGridViewSelectedRowCollection src = dgvCarReports.SelectedRows;
             //    for (int i = src.Count - 1; i >= 0; i--) {
             //        dgvCarReports.Rows.RemoveAt(src[i].Index);
             //    }
@@ -163,8 +163,10 @@ namespace CarReportSystem {
 
         }
         private void Form1_Load(object sender, EventArgs e) {
-            dgvCarReports.Columns[6].Visible = false;
+            dgvCarReports.Columns[0].Visible = false;
 
+            dgvCarReports.Columns[6].Visible = false;
+            
             tsInfoText.Text = "";//テキスト初期化
             tsTimeDisp.Text = DateTime.Now.ToString("HH時mm分ss秒");
             tmTimeUpdate.Start();
@@ -294,7 +296,7 @@ namespace CarReportSystem {
             }
         }
 
-      
+
 
 
         private void dgvCarReports_CellClick(object sender, DataGridViewCellEventArgs e) {
@@ -308,7 +310,7 @@ namespace CarReportSystem {
                 cbCarName.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
                 tbReport.Text = dgvCarReports.CurrentRow.Cells[5].Value.ToString();
                 pbCarImage.Image = !dgvCarReports.CurrentRow.Cells[6].Value.Equals(DBNull.Value)
-                    && ((Byte[])dgvCarReports.CurrentRow.Cells[6].Value).Length !=0 ?
+                    && ((Byte[])dgvCarReports.CurrentRow.Cells[6].Value).Length != 0 ?
                                     ByteArrayToImage((Byte[])dgvCarReports.CurrentRow.Cells[6].Value) : null;
                 //if (!dgvCarReports.CurrentRow.Cells[6].Value.Equals(DBNull.Value)) {
                 //    pbCarImage.Image = ByteArrayToImage((byte[])dgvCarReports.CurrentRow.Cells[6].Value);
@@ -345,7 +347,7 @@ namespace CarReportSystem {
         }
 
         //接続ボタンのイベントハンドラー
-       
+
 
         private void dB接続ToolStripMenuItem_Click(object sender, EventArgs e) {
             dbCnection();
@@ -362,14 +364,20 @@ namespace CarReportSystem {
             }
         }
         private void btAutherSeachi_Click(object sender, EventArgs e) {
-            carReportTableTableAdapter.FillByAuther(this.infosys202306DataSet.CarReportTable,tbAutherSeach.Text);
+            carReportTableTableAdapter.FillByAuther(this.infosys202306DataSet.CarReportTable, textBox2.Text);
         }
         private void btCarNameSearch_Click(object sender, EventArgs e) {
-            carReportTableTableAdapter.FillByCarName(this.infosys202306DataSet.CarReportTable, tbCarNameSeach.Text);
+            carReportTableTableAdapter.FillByCarName(this.infosys202306DataSet.CarReportTable, textBox1.Text);
         }
 
         private void btDateTimeSeach_Click(object sender, EventArgs e) {
-          //  carReportTableTableAdapter.FillByDateTime(this.infosys202306DataSet.CarReportTable, dateTimePicker2.Value);
+           carReportTableTableAdapter.FillByDateToDate(this.infosys202306DataSet.CarReportTable, dateTimePicker2.Text,dateTimePicker3.Text);
         }
+
+        private void btRiset_Click(object sender, EventArgs e) {
+          this.carReportTableTableAdapter.Fill(this.infosys202306DataSet.CarReportTable);
+        }
+
+       
     }
 }
