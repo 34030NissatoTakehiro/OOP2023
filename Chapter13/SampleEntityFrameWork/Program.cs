@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +10,20 @@ using System.Threading.Tasks;
 namespace SampleEntityFrameWork {
     class Program {
         static void Main(string[] args) {
-            //InsertBooks();
-            Console.WriteLine("データ挿入しますた。続けるにはEnter!!!!!!!!!");
-            // DisplayAllBooks();
-            //AddAuthors();
-            //Addbooks();
-            foreach (var book in GetBooks()) {
-                Console.WriteLine($"{ book.Title}{ book.Author.Name}");
+           // InsertBooks();
+           // Console.WriteLine("データ挿入しますた。続けるにはEnter!!!!!!!!!");
+           //  DisplayAllBooks();
+           //  AddAuthors();
+           //  Addbooks();
+           // foreach (var book in GetBooks()) {
+           //    Console.WriteLine($"{ book.Title}{ book.Author.Name}");
+           //}
+            using (var db = new BooksDbContext()) {
+
+                db.Database.Log = sql => { Debug.Write(sql); };
+
+                var count = db.books.Count();
+                Console.WriteLine(count);
             }
 
             Console.ReadLine();
@@ -66,24 +74,23 @@ namespace SampleEntityFrameWork {
         //List 13-9
         private static void AddAuthors() {
             using (var db = new BooksDbContext()) {
-                var autors1 = new Auther {
-                    birthday = new DateTime(1986, 12, 7),
+                var author1 = new Auther {
+                    birthday = new DateTime(1878, 12, 9),
                     Gender = "F",
                     Name = "与謝野晶子",
                 };
-                var autors2 = new Auther {
-                    birthday = new DateTime(1986, 8, 27),
+                db.Authers.Add(author1);
+                var author2 = new Auther {
+                    birthday = new DateTime(1896, 8, 27),
                     Gender = "M",
-                    Name = "宮沢賢治"
-
+                    Name = "宮沢賢治",
                 };
-                db.Authers.Add(autors1);
-                db.Authers.Add(autors2);
+                db.Authers.Add(author2);
                 db.SaveChanges();
-
             }
-            
         }
+
+    
         //List 13-10
         private static void Addbooks() {
             using (var db = new BooksDbContext()) {
