@@ -10,25 +10,109 @@ using System.Threading.Tasks;
 namespace SampleEntityFrameWork {
     class Program {
         static void Main(string[] args) {
-           // InsertBooks();
-           // Console.WriteLine("データ挿入しますた。続けるにはEnter!!!!!!!!!");
-           //  DisplayAllBooks();
-           //  AddAuthors();
-           //  Addbooks();
-           // foreach (var book in GetBooks()) {
-           //    Console.WriteLine($"{ book.Title}{ book.Author.Name}");
-           //}
-            using (var db = new BooksDbContext()) {
+            Console.WriteLine("# 1.1");
+            Exercise1_1();
 
-                db.Database.Log = sql => { Debug.Write(sql); };
+            Console.WriteLine();
+            Console.WriteLine("# 1.2");
+            Exercise1_2();
 
-                var count = db.books.Count();
-                Console.WriteLine(count);
-            }
+            Console.WriteLine();
+            Console.WriteLine("# 1.3");
+            Exercise1_3();
+
+            Console.WriteLine();
+            Console.WriteLine("# 1.4");
+            Exercise1_4();
+
+            Console.WriteLine();
+            Console.WriteLine("# 1.5");
+            Exercise1_5();
 
             Console.ReadLine();
-            Console.WriteLine();
         }
+
+        private static void Exercise1_1() {
+            using (var db = new BooksDbContext()) {
+                var people1 = new Auther {
+                    birthday = new DateTime(1888, 12, 26),
+                    Gender = "男性",
+                    Name = "菊池寛",
+                };
+                db.Authers.Add(people1);
+                var author2 = new Auther {
+                    birthday = new DateTime(1896, 8, 27),
+                    Gender = "男性",
+                    Name = "川端康成",
+                };
+                db.Authers.Add(author2);
+                db.SaveChanges();
+            }
+
+
+            using (var db = new BooksDbContext()) {
+                var book1 = new Book {
+                    Title = "こころ",
+                    PublishedYear = 1991,
+                    Author = new Auther {
+                        birthday = new DateTime(1867, 2, 9),
+                        Gender = "M",
+                        Name = "夏目漱石",
+                    }
+                };
+                db.books.Add(book1);
+                var book2 = new Book {
+                    Title = "伊豆の踊子",
+                    PublishedYear = 2003,
+                    Author = new Auther {
+                        birthday = new DateTime(1896, 8, 27),
+                        Gender = "男性",
+                        Name = "川端康成",
+                    }
+                };
+                db.books.Add(book2);
+                var book3 = new Book {
+                    Title = "真珠夫人",
+                    PublishedYear = 2002,
+                    Author = new Auther {
+                        birthday = new DateTime(1888, 12, 26),
+                        Gender = "男性",
+                        Name = "菊池寛",
+                    }
+
+                };
+                db.books.Add(book3);
+                var book4 = new Book {
+                    Title = "注文の多い料理店",
+                    PublishedYear = 2000,
+                    Author = new Auther {
+                        birthday = new DateTime(1896, 8, 27),
+                        Gender = "M",
+                        Name = "宮沢賢治",
+                    }
+
+                };
+                db.books.Add(book4
+                    );
+                db.SaveChanges();//DB更新
+
+                Console.WriteLine($"{ book1.Id}{ book2.Id}");
+            }
+        }
+
+            private static void Exercise1_2() {
+
+        }
+
+        private static void Exercise1_3() {
+        }
+
+        private static void Exercise1_4() {
+        }
+
+        private static void Exercise1_5() {
+        }
+
         // List 13-5
         static void InsertBooks() {
             using (var db = new BooksDbContext()) {
