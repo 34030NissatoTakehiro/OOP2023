@@ -15,6 +15,6 @@ namespace SampleEntityFrameWork.Models {
         [MaxLength(16)]
         public string publisher { get; set; }
         public int? PublishedYear { get; set; }
-        public virtual Auther Author{ get; set; }
+        public virtual Author Author{ get; set; }
     }
 }

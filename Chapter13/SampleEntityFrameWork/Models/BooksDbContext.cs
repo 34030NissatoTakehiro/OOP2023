@@ -24,7 +24,7 @@ namespace SampleEntityFrameWork.Models {
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
 
         public DbSet<Book> books { get; set; }
-        public DbSet<Auther> Authers { get; set; }
+        public DbSet<Author> Authers { get; set; }
 
     }
 

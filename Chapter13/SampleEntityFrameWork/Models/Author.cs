@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
 namespace SampleEntityFrameWork.Models {
-   public class Auther {
+   public class Author {
         public int Id { get; set; }
         [MaxLength(30)]
         [Required]
