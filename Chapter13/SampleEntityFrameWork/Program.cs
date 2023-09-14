@@ -12,7 +12,7 @@ namespace SampleEntityFramework {
     class Program {
         static void Main(string[] args) {
             Console.WriteLine("# 1.1");
-           // Exercise1_1();
+            //Exercise1_1();
 
             Console.WriteLine();
             Console.WriteLine("# 1.2");
@@ -113,25 +113,46 @@ namespace SampleEntityFramework {
 
 
         private static void Exercise1_2() {
-            using (var db = new BooksDbContext())
+            var books = GetBooks();
 
-                foreach (var book in db.books.ToList()) {
-               Console.WriteLine($"{book.Title}{book.Author.Name} {book.PublishedYear} "+$"");
-           }
-           
+            foreach (var book in books) {
+                Console.WriteLine($"{book.Title}{book.Author.Name} {book.PublishedYear} " + $"");
+            }
+
         }
 
         private static void Exercise1_3() {
+            using (var db = new BooksDbContext()) {
+                var books = db.books.Max(s => s.Title.Length);
+                var bookone = db.books.Where(x => x.Title.Length == books);
+                foreach (var book in bookone) {
+                    Console.WriteLine(book.Title);
+                }
+            }
 
         }
 
         private static void Exercise1_4() {
+            using (var db = new BooksDbContext()) {
+                var books = db.books.OrderBy(s => s.PublishedYear);
+                var bookone = books.Take(3).ToList();
+                foreach (var book in bookone) {
+                    Console.WriteLine($"{book.Title}{book.Author.Name}  " + $"");
 
+                }
+            }
         }
+    
 
         private static void Exercise1_5() {
-
-        }
+            using (var db = new BooksDbContext()) {
+                var books = db.books.OrderBy(s => s.Author.birthday);
+               
+                foreach (var book in books) {
+                    Console.WriteLine($"{book.Title}{book.PublishedYear}  " + $"");
+                }
+                }
+            }
 
         // List 13-5
         static void InsertBooks() {
