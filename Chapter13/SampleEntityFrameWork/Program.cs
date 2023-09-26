@@ -146,10 +146,13 @@ namespace SampleEntityFramework {
 
         private static void Exercise1_5() {
             using (var db = new BooksDbContext()) {
-                var books = db.books.OrderBy(s => s.Author.birthday);
+                var authors = db.Authers.OrderByDescending(s => s.birthday);
                
-                foreach (var book in books) {
-                    Console.WriteLine($"{book.Title}{book.PublishedYear}  " + $"");
+                foreach (var autor in authors.ToArray()) {
+                    Console.WriteLine("{0} {1:yyyy/MMM}",autor.Name,autor.birthday);
+                    foreach (var book in autor.Books) {
+                        Console.WriteLine("{0} {1}", book.Title, book.PublishedYear, book.Author.birthday, book.Author);
+                    }
                 }
                 }
             }
