@@ -308,5 +308,9 @@ namespace CarReportSystem {
                 btDeleteReport.Enabled = true;
             }
         }
+
+        private void pbCarImage_Click(object sender, EventArgs e) {
+
+        }
     }
 }
