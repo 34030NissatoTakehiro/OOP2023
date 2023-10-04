@@ -19,28 +19,46 @@ namespace RssReader {
         }
 
         private void btGet_Click(object sender, EventArgs e) {
-            using (var wc = new WebClient()) {
-                var url = wc.OpenRead(tbUrl.Text);
-                XDocument xdoc = XDocument.Load(url);
-                ITEMDATA = xdoc.Root.Descendants("item")
-                                      .Select(x => new ItemData {
-                                          Title = (string)x.Element("title"),
-                                          Link = (string)x.Element("link"),
-                                      }).ToList();
-               
-                foreach (var node in ITEMDATA) {
-                    lbRssTitle.Items.Add(node.Title);
-
-                }
+            if (tbUrl.Text == "") {
+                return;
             }
+            lbRssTitle.Items.Clear();
+                using (var wc = new WebClient()) {
+                    
+                    var url = wc.OpenRead(tbUrl.Text);
+                    XDocument xdoc = XDocument.Load(url);
+                    ITEMDATA = xdoc.Root.Descendants("item")
+                                          .Select(x => new ItemData {
+                                              Title = (string)x.Element("title"),
+                                              Link = (string)x.Element("link"),
+                                          }).ToList();
+
+                    foreach (var node in ITEMDATA) {
+                        lbRssTitle.Items.Add(node.Title);
+
+                    }
+                }
         }
 
         private void lbRssTitle_SelectedValueChanged(object sender, EventArgs e) {
+         
             var wb = lbRssTitle.SelectedIndex;
             wbBrowser.Navigate(ITEMDATA[wb].Link);
 
 
             
         }
+
+        private void Form1_Resize(object sender, EventArgs e) {
+        }
+
+        private void btGopage_Click(object sender, EventArgs e) {
+            wbBrowser.GoForward();
+        }
+
+        private void btBackPage_Click(object sender, EventArgs e) {
+            wbBrowser.GoBack();
+        }
+
     }
 }
