@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Exercise03 {
@@ -13,10 +14,15 @@ namespace Exercise03 {
                "It will take time.",
                "We reorganized the timetable.",
             };
+            foreach (var item in texts) {
+                var matches = Regex.Matches(item,@"(T|t)ime\b");
+                foreach (Match m in matches) {
+                    Console.WriteLine("{0}: {1}", item, m.Index);
 
-
-
-
+                }
+            }
+           
         }
+           
     }
 }
