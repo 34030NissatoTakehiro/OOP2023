@@ -34,12 +34,12 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_3() {
-             var count = Library.Books.OrderBy(b=>b.PublishedYear)
-                                      .GroupBy(b => b.PublishedYear);
+            var count = Library.Books.OrderBy(b => b.PublishedYear)
+                                     .GroupBy(b => b.PublishedYear);
             foreach (var books in count) {
-                Console.WriteLine("{0}年  {1}冊",books.Key,books.Count());
-                
-            }     
+                Console.WriteLine("{0}年  {1}冊", books.Key, books.Count());
+
+            }
         }
 
         private static void Exercise1_4() {
@@ -73,7 +73,7 @@ namespace Exercise01 {
         private static void Exercise1_6() {
             var groups = Library.Categories.GroupJoin(Library.Books, c => c.Id,
                                                                     b => b.CategoryId,
-                                                                    (c, book) => new { Category = c.Name, Books = book }).OrderBy(b=>b.Category);
+                                                                    (c, book) => new { Category = c.Name, Books = book }).OrderBy(b => b.Category);
             foreach (var group in groups) {
                 Console.WriteLine(group.Category);
                 foreach (var book in group.Books) {
@@ -83,9 +83,24 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_7() {
+
+
+
         }
 
         private static void Exercise1_8() {
+            var groups = Library.Categories.GroupJoin(Library.Books, c => c.Id,
+                                                                  b => b.CategoryId,
+                                                                  (c, book) => new { Category = c.Name, count = book.Count() });
+            foreach (var group in groups) {
+                if (group.count >= 4) {
+                    Console.WriteLine(group.Category);
+
+
+                }
+
+            }
         }
     }
 }
+
