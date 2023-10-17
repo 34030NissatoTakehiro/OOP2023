@@ -83,23 +83,33 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_7() {
-
+            var catrId = Library.Categories.Single(c => c.Name == "Development").Id;
+            var groups = Library.Books.Where(b => b.CategoryId == catrId)
+                                     .GroupBy(b => b.PublishedYear)
+                                     .OrderBy(b => b.Key);
+            foreach (var grou in groups) {
+                Console.WriteLine("#{0}年", grou.Key);
+                foreach (var book in grou) {
+                    Console.WriteLine("{0}", book.Title);
+                }
+            }
 
 
         }
 
         private static void Exercise1_8() {
             var groups = Library.Categories.GroupJoin(Library.Books, c => c.Id,
-                                                                  b => b.CategoryId,
-                                                                  (c, book) => new { Category = c.Name, count = book.Count() });
+                                                                     b => b.CategoryId,
+                                                                     (c, book) => new { Category = c.Name,
+                                                                         count = book.Count() })
+                                                                     .Where(x => x.count >= 4); 
             foreach (var group in groups) {
-                if (group.count >= 4) {
-                    Console.WriteLine(group.Category);
+                Console.WriteLine(group.Category);
 
 
                 }
 
-            }
+            
         }
     }
 }
