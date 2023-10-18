@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Section01 {
     class Program {
         static void Main(string[] args) {
-            var greeeings = new List<GreetingBase>() {
+            var greeeings = new List<IGreeting>() {
                  new GreetingMorning(),
                  new GreetingAfternoon(),
                  new GreetingEvening(),
