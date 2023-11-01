@@ -60,5 +60,8 @@ namespace RssReader {
             wbBrowser.GoBack();
         }
 
+        private void lbRssTitle_SelectedIndexChanged(object sender, EventArgs e) {
+
+        }
     }
 }

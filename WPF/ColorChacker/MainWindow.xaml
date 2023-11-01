@@ -32,27 +32,38 @@
 
 
             <TextBlock TextWrapping="Wrap" Text="R" Width="8" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <Slider x:Name="rslider" Margin="10" Grid.Column="1" TickPlacement="TopLeft" Maximum="255"  ValueChanged="Slider_ValueChanged"/>
-            <TextBox x:Name="rLabel" Text="{Binding ElementName=rslider,Path=Value,Mode=OneWay,StringFormat={}{0:N0}}" Grid.Column="2" VerticalAlignment="Center"  />
+            <Slider x:Name="rslider" Margin="10" Grid.Column="1" TickPlacement="TopLeft" Maximum="255"  ValueChanged="Slider_ValueChanged" IsSnapToTickEnabled="True"/>
+            <TextBox x:Name="rLabel" Text="{Binding ElementName=rslider,Path=Value,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N0}}" Grid.Column="2" VerticalAlignment="Center"  />
 
 
             <TextBlock TextWrapping="Wrap" Text="G" VerticalAlignment="Center" Margin="0,10" Grid.Row="1" Width="8" />
-            <Slider x:Name="gslider" Grid.Row="1" Margin="10,16,10,10" Grid.Column="1"  TickPlacement="TopLeft" VerticalAlignment="Center" Maximum="255" ValueChanged="Slider_ValueChanged"/>
-            <TextBox x:Name="gLabel" Grid.Row="1" Text="{Binding ElementName=gslider,Path=Value,Mode=OneWay, StringFormat={}{0:N0}}" Grid.Column="2" VerticalAlignment="Center" />
+            <Slider x:Name="gslider" Grid.Row="1" Margin="10,16,10,10" Grid.Column="1"  TickPlacement="TopLeft" VerticalAlignment="Center" Maximum="255" ValueChanged="Slider_ValueChanged" IsSnapToTickEnabled="True"/>
+            <TextBox x:Name="gLabel" Grid.Row="1" Text="{Binding ElementName=gslider,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N0}}" Grid.Column="2" VerticalAlignment="Center" />
 
             <TextBlock TextWrapping="Wrap" Text="B"  VerticalAlignment="Center" Margin="0,10" Grid.Row="2" Width="7" />
-            <Slider x:Name="bslider" Grid.Row="2"  Margin="10" Grid.Column="1"  TickPlacement="TopLeft" Maximum="255" ValueChanged="Slider_ValueChanged"/>
-            <TextBox x:Name="bLabel" Grid.Row="2" Text="{Binding ElementName=bslider,Path=Value,Mode=OneWay,StringFormat={}{0:N0}}" Grid.Column="2" VerticalAlignment="Center" />
-            <ComboBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Width="120"/>
+            <Slider x:Name="bslider" Grid.Row="2"  Margin="10" Grid.Column="1"  TickPlacement="TopLeft" Maximum="255" ValueChanged="Slider_ValueChanged" IsSnapToTickEnabled="True"/>
+            <TextBox x:Name="bLabel" Grid.Row="2" Text="{Binding ElementName=bslider,Path=Value,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N0}}" Grid.Column="2" VerticalAlignment="Center" />
 
         </Grid>
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="58*"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Button x:Name="StockButton" Content="Stock" VerticalAlignment="Top" Height="49" Click="StockButton_Click"/>
-            <ListBox HorizontalAlignment="Left" Height="142"  Grid.Row="1" Width="218" Margin="10,38,0,22" />
+            <ComboBox ItemsSource="{Binding}"  SelectedValue="{Binding Color}"  Margin="-204,143,0,0" Height="29" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="155" Grid.Row="1" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Width="80" Height="Auto" Margin="5,0" BorderThickness="1" BorderBrush="LightGray" >
+                            <Border.Background>
+                                <SolidColorBrush Color="{Binding Color}"/>
+                            </Border.Background>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </Border>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <ListBox x:Name="Stock" HorizontalAlignment="Left" Height="175" Margin="10,17,0,0" Grid.Row="1" VerticalAlignment="Top" Width="244" SelectionChanged="Stock_SelectionChanged" />
         </Grid>
 
     </Grid>
