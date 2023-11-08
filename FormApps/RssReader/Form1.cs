@@ -63,5 +63,23 @@ namespace RssReader {
         private void lbRssTitle_SelectedIndexChanged(object sender, EventArgs e) {
 
         }
+
+        private void tbCartop_CheckedChanged(object sender, EventArgs e) {
+            tbUrl.Text = "https://news.yahoo.co.jp/rss/media/wcartop/all.xml";
+        }
+
+        private void rbMotorsports_CheckedChanged(object sender, EventArgs e) {
+            tbUrl.Text = "https://news.yahoo.co.jp/rss/media/mmagazine/all.xml";
+        }
+
+        private void rbBasketBall_CheckedChanged(object sender, EventArgs e) {
+            tbUrl.Text = "https://news.yahoo.co.jp/rss/media/nbpvbball/all.xml";
+        }
+
+        private void rbIT_CheckedChanged(object sender, EventArgs e) {
+            tbUrl.Text = "https://news.yahoo.co.jp/rss/topics/it.xml";
+        }
+
+     
     }
 }

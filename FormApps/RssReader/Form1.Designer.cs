@@ -32,6 +32,13 @@ namespace RssReader {
             this.btGopage = new System.Windows.Forms.Button();
             this.btOKINIIRI = new System.Windows.Forms.Button();
             this.btURL = new System.Windows.Forms.Button();
+            this.tbCartop = new System.Windows.Forms.RadioButton();
+            this.rbMotorsports = new System.Windows.Forms.RadioButton();
+            this.rbBasketBall = new System.Windows.Forms.RadioButton();
+            this.rbIT = new System.Windows.Forms.RadioButton();
+            this.tbOkiniName = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.lbName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tbUrl
@@ -70,11 +77,11 @@ namespace RssReader {
             // 
             // wbBrowser
             // 
-            this.wbBrowser.Location = new System.Drawing.Point(24, 222);
+            this.wbBrowser.Location = new System.Drawing.Point(24, 217);
             this.wbBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbBrowser.Name = "wbBrowser";
             this.wbBrowser.ScriptErrorsSuppressed = true;
-            this.wbBrowser.Size = new System.Drawing.Size(1209, 398);
+            this.wbBrowser.Size = new System.Drawing.Size(876, 398);
             this.wbBrowser.TabIndex = 3;
             // 
             // btBackPage
@@ -103,7 +110,7 @@ namespace RssReader {
             // 
             this.btOKINIIRI.Font = new System.Drawing.Font("MS UI Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.btOKINIIRI.ForeColor = System.Drawing.Color.Gold;
-            this.btOKINIIRI.Location = new System.Drawing.Point(1128, 61);
+            this.btOKINIIRI.Location = new System.Drawing.Point(917, 250);
             this.btOKINIIRI.Name = "btOKINIIRI";
             this.btOKINIIRI.Size = new System.Drawing.Size(51, 54);
             this.btOKINIIRI.TabIndex = 6;
@@ -113,18 +120,103 @@ namespace RssReader {
             // btURL
             // 
             this.btURL.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btURL.Location = new System.Drawing.Point(1182, 61);
+            this.btURL.Location = new System.Drawing.Point(976, 250);
             this.btURL.Name = "btURL";
             this.btURL.Size = new System.Drawing.Size(51, 54);
             this.btURL.TabIndex = 6;
             this.btURL.Text = "URL";
             this.btURL.UseVisualStyleBackColor = true;
             // 
+            // tbCartop
+            // 
+            this.tbCartop.AutoSize = true;
+            this.tbCartop.Font = new System.Drawing.Font("UD デジタル 教科書体 N-B", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbCartop.Location = new System.Drawing.Point(1128, 61);
+            this.tbCartop.Name = "tbCartop";
+            this.tbCartop.Size = new System.Drawing.Size(102, 32);
+            this.tbCartop.TabIndex = 7;
+            this.tbCartop.TabStop = true;
+            this.tbCartop.Text = "CARTOP";
+            this.tbCartop.UseVisualStyleBackColor = true;
+            this.tbCartop.CheckedChanged += new System.EventHandler(this.tbCartop_CheckedChanged);
+            // 
+            // rbMotorsports
+            // 
+            this.rbMotorsports.AutoSize = true;
+            this.rbMotorsports.Font = new System.Drawing.Font("UD デジタル 教科書体 NP-B", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.rbMotorsports.Location = new System.Drawing.Point(1128, 127);
+            this.rbMotorsports.Name = "rbMotorsports";
+            this.rbMotorsports.Size = new System.Drawing.Size(131, 19);
+            this.rbMotorsports.TabIndex = 8;
+            this.rbMotorsports.TabStop = true;
+            this.rbMotorsports.Text = "MOTORSPORTS";
+            this.rbMotorsports.UseVisualStyleBackColor = true;
+            this.rbMotorsports.CheckedChanged += new System.EventHandler(this.rbMotorsports_CheckedChanged);
+            // 
+            // rbBasketBall
+            // 
+            this.rbBasketBall.AllowDrop = true;
+            this.rbBasketBall.AutoSize = true;
+            this.rbBasketBall.Font = new System.Drawing.Font("UD デジタル 教科書体 NP-B", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.rbBasketBall.Location = new System.Drawing.Point(1128, 99);
+            this.rbBasketBall.Name = "rbBasketBall";
+            this.rbBasketBall.Size = new System.Drawing.Size(116, 19);
+            this.rbBasketBall.TabIndex = 9;
+            this.rbBasketBall.TabStop = true;
+            this.rbBasketBall.Text = "BASKETBALL";
+            this.rbBasketBall.UseVisualStyleBackColor = true;
+            this.rbBasketBall.CheckedChanged += new System.EventHandler(this.rbBasketBall_CheckedChanged);
+            // 
+            // rbIT
+            // 
+            this.rbIT.AutoSize = true;
+            this.rbIT.Font = new System.Drawing.Font("UD デジタル 教科書体 NK-B", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.rbIT.Location = new System.Drawing.Point(1128, 155);
+            this.rbIT.Name = "rbIT";
+            this.rbIT.Size = new System.Drawing.Size(50, 26);
+            this.rbIT.TabIndex = 10;
+            this.rbIT.TabStop = true;
+            this.rbIT.Text = "IT";
+            this.rbIT.UseVisualStyleBackColor = true;
+            this.rbIT.CheckedChanged += new System.EventHandler(this.rbIT_CheckedChanged);
+            // 
+            // tbOkiniName
+            // 
+            this.tbOkiniName.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbOkiniName.Location = new System.Drawing.Point(976, 216);
+            this.tbOkiniName.Name = "tbOkiniName";
+            this.tbOkiniName.Size = new System.Drawing.Size(254, 28);
+            this.tbOkiniName.TabIndex = 11;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(1033, 250);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 19);
+            this.textBox2.TabIndex = 12;
+            // 
+            // lbName
+            // 
+            this.lbName.AutoSize = true;
+            this.lbName.Font = new System.Drawing.Font("UD デジタル 教科書体 NP-B", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbName.Location = new System.Drawing.Point(913, 217);
+            this.lbName.Name = "lbName";
+            this.lbName.Size = new System.Drawing.Size(48, 22);
+            this.lbName.TabIndex = 13;
+            this.lbName.Text = "名前";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1245, 642);
+            this.Controls.Add(this.lbName);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tbOkiniName);
+            this.Controls.Add(this.rbIT);
+            this.Controls.Add(this.rbBasketBall);
+            this.Controls.Add(this.rbMotorsports);
+            this.Controls.Add(this.tbCartop);
             this.Controls.Add(this.btURL);
             this.Controls.Add(this.btOKINIIRI);
             this.Controls.Add(this.btGopage);
@@ -152,6 +244,13 @@ namespace RssReader {
         private System.Windows.Forms.Button btGopage;
         private System.Windows.Forms.Button btOKINIIRI;
         private System.Windows.Forms.Button btURL;
+        private System.Windows.Forms.RadioButton tbCartop;
+        private System.Windows.Forms.RadioButton rbMotorsports;
+        private System.Windows.Forms.RadioButton rbBasketBall;
+        private System.Windows.Forms.RadioButton rbIT;
+        private System.Windows.Forms.TextBox tbOkiniName;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label lbName;
     }
 }
 
