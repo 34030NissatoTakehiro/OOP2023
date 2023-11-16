@@ -63,7 +63,7 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <ListBox x:Name="Stock" HorizontalAlignment="Left" Height="175" Margin="10,17,0,0" Grid.Row="1" VerticalAlignment="Top" Width="244" SelectionChanged="Stock_SelectionChanged" />
+            <ListBox x:Name="Stock" HorizontalAlignment="Left" Height="175" Margin="10,27,0,0" Grid.Row="1" VerticalAlignment="Top" Width="244" SelectionChanged="Stock_SelectionChanged" MouseDoubleClick="Stock_MouseDoubleClick" />
         </Grid>
 
     </Grid>

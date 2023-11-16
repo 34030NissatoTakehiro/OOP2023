@@ -312,5 +312,9 @@ namespace CarReportSystem {
         private void pbCarImage_Click(object sender, EventArgs e) {
 
         }
+
+        private void cbAuthor_SelectedIndexChanged(object sender, EventArgs e) {
+
+        }
     }
 }

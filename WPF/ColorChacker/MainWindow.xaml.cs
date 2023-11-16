@@ -23,24 +23,28 @@ namespace ColorChacker {
             InitializeComponent();
             DataContext = GetColorList();
         }
-
+        List<MyColor> colors = new List<MyColor>(); 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             Color color = Color.FromRgb((byte)rslider.Value, (byte)gslider.Value, (byte)bslider.Value);
             SolidColorBrush Bur = new SolidColorBrush(color);
             coloArea.Background = Bur;
         }
         private void StockButton_Click(object sender, RoutedEventArgs e) {
-
-            string stok = String.Format("R {0} G {1} B {2}",rslider.Value,gslider.Value,bslider.Value);
-            Stock.Items.Add(stok);
+            Color color = Color.FromRgb((byte)rslider.Value, (byte)gslider.Value, (byte)bslider.Value);
+            var getlist =GetColorList();
+             var colooo = getlist.FirstOrDefault(x=> x.Color == color)?.Name?? String.Format("R {0} G {1} B {2}", rslider.Value, gslider.Value, bslider.Value);
+            colors.Add(new MyColor {Color = color,Name= colooo });
+            
+            Stock.Items.Add(colooo);
         }
         private void Stock_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            string[] Click = Stock.SelectedItem.ToString().Split(' ');
-            rLabel.Text = Click[1];
-            gLabel.Text = Click[3];
-            bLabel.Text = Click[5];
-        }
-
+            var selectChange = Stock.SelectedItem;
+            var tansaku = colors.Find(x => x.Name == selectChange.ToString());
+            rLabel.Text = tansaku.Color.R.ToString();
+            gLabel.Text = tansaku.Color.G.ToString();
+            bLabel.Text = tansaku.Color.B.ToString();
+            
+                }
 
         private MyColor[] GetColorList() {
             return typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static)
@@ -59,7 +63,9 @@ namespace ColorChacker {
             coloArea.Background = Bur;
         }
 
-      
+        private void Stock_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
+            var Data = Stock.Items[Stock.SelectedIndex];
+        }
     }
     public class MyColor {
         public Color Color { get; set; }
