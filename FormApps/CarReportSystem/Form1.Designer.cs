@@ -472,11 +472,12 @@ namespace CarReportSystem {
             this.編集EToolStripMenuItem.Name = "編集EToolStripMenuItem";
             this.編集EToolStripMenuItem.Size = new System.Drawing.Size(57, 19);
             this.編集EToolStripMenuItem.Text = "編集(&E)";
+            this.編集EToolStripMenuItem.Click += new System.EventHandler(this.編集EToolStripMenuItem_Click);
             // 
             // 色設定ToolStripMenuItem
             // 
             this.色設定ToolStripMenuItem.Name = "色設定ToolStripMenuItem";
-            this.色設定ToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.色設定ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.色設定ToolStripMenuItem.Text = "色設定...";
             this.色設定ToolStripMenuItem.Click += new System.EventHandler(this.色設定ToolStripMenuItem_Click);
             // 

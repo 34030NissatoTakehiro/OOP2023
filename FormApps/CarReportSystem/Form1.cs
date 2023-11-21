@@ -316,5 +316,9 @@ namespace CarReportSystem {
         private void cbAuthor_SelectedIndexChanged(object sender, EventArgs e) {
 
         }
+
+        private void 編集EToolStripMenuItem_Click(object sender, EventArgs e) {
+
+        }
     }
 }

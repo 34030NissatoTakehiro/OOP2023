@@ -14,7 +14,7 @@ using System.Xml.Linq;
 namespace RssReader {
     public partial class Form1 : Form {
         List<ItemData> ITEMDATA = new List<ItemData>();
-
+        ToolTip ToolTip;
         public Form1() {
             InitializeComponent();
         }
@@ -109,9 +109,6 @@ namespace RssReader {
                 return;
             }
         }
-            private void button1_Click(object sender, EventArgs e) {
-            wbBrowser.Refresh();
-        }
 
 
 
@@ -133,26 +130,29 @@ namespace RssReader {
 
         private void btOKINIIRI_Click(object sender, EventArgs e) {
             favoritestation OKINIIRI = new favoritestation(tbURLBOX.Text, tbOkiniName.Text);
-           
-
-            if (OKINIIRIDict.ContainsKey(tbURLBOX.Text)||OKINIIRIDict.ContainsValue(tbOkiniName.Text)) {
-                lbinfomation.Text = "既に登録されています";
-
-
+            if (tbOkiniName.Text.Equals("") || tbURLBOX.Text.Equals("")) {
+                lbinfomation.Text = "未入力では登録されません。";
             } else {
-                if (tbURLBOX.Text.Contains(".xml")) {
-                    lbinfomation.Text = " ";
-                    OKINIIRIDict.Add(tbURLBOX.Text, tbOkiniName.Text);
-                    cbOkiniName.Items.Add(OKINIIRI);
 
-                    tbURLBOX.Clear();
-                    tbOkiniName.Clear();
+
+
+                if (OKINIIRIDict.ContainsKey(tbURLBOX.Text) || OKINIIRIDict.ContainsValue(tbOkiniName.Text)) {
+                    lbinfomation.Text = "既に登録されています";
+
+
                 } else {
-                    lbinfomation.Text = " URLではありません";
-                }
-                
-              
+                   
+                        lbinfomation.Text = " ";
+                        OKINIIRIDict.Add(tbURLBOX.Text, tbOkiniName.Text);
+                        cbOkiniName.Items.Add(OKINIIRI);
 
+                        tbURLBOX.Clear();
+                        tbOkiniName.Clear();
+                    
+
+
+
+                }
             }
         }
 
@@ -216,26 +216,45 @@ namespace RssReader {
         private void btATOYOMI_Click(object sender, EventArgs e) {
             ATOYOMI ATOYOMI = new ATOYOMI(tbAtoURL.Text, tbAtoName.Text);
 
-
-            if (ATOYOMIDict.ContainsKey(tbAtoURL.Text) || ATOYOMIDict.ContainsValue(tbAtoName.Text)) {
-                lbinfomation.Text = "既に登録されています";
-
-
+            if (tbAtoName.Text.Equals("") && tbAtoURL.Text.Equals("")) {
+                lbinfomation.Text = "未入力では登録されません。";
             } else {
+                if (ATOYOMIDict.ContainsKey(tbAtoURL.Text) || ATOYOMIDict.ContainsValue(tbAtoName.Text)) {
+                    lbinfomation.Text = "既に登録されています。";
 
-                lbinfomation.Text = " ";
-                ATOYOMIDict.Add(tbAtoURL.Text, tbAtoName.Text);
-                cbATOYOMI.Items.Add(ATOYOMI);
 
-                tbAtoName.Clear();
-                tbAtoURL.Clear();
+                } else {
 
+                    lbinfomation.Text = " ";
+                    ATOYOMIDict.Add(tbAtoURL.Text, tbAtoName.Text);
+                    cbATOYOMI.Items.Add(ATOYOMI);
+
+                    tbAtoName.Clear();
+                    tbAtoURL.Clear();
+
+                }
             }
         }
 
         private void cbATOYOMI_SelectedIndexChanged(object sender, EventArgs e) {
             ATOYOMI ATo= (ATOYOMI)cbATOYOMI.SelectedItem;
             wbBrowser.Navigate(ATo.AtoURL);
+        }
+
+        private void Form1_Load(object sender, EventArgs e) {
+            var tool = new ToolTip();
+            tool.InitialDelay = 0;
+            tool.ReshowDelay = 0;
+            tool.AutoPopDelay = 10000;
+
+            tool.SetToolTip(btOKINIIRI, "お気に入りを登録できます。");
+            tool.SetToolTip(btATOYOMI, "後で読む記事を登録できます。");
+            tool.SetToolTip(btReflesh, "ウェブサイト更新");
+
+        }
+
+        private void btReflesh_Click(object sender, EventArgs e) {
+            wbBrowser.Refresh();
         }
     }
 }

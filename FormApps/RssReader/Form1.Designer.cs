@@ -44,7 +44,7 @@ namespace RssReader {
             this.lbinfomation = new System.Windows.Forms.Label();
             this.btClear = new System.Windows.Forms.Button();
             this.btAllClear = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btReflesh = new System.Windows.Forms.Button();
             this.btdeath = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tbAtoName = new System.Windows.Forms.TextBox();
@@ -279,16 +279,16 @@ namespace RssReader {
             this.btAllClear.UseVisualStyleBackColor = false;
             this.btAllClear.Click += new System.EventHandler(this.btAllClear_Click);
             // 
-            // button1
+            // btReflesh
             // 
-            this.button1.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.Location = new System.Drawing.Point(1046, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(39, 42);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "🔄\r\n";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btReflesh.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btReflesh.Location = new System.Drawing.Point(1046, 5);
+            this.btReflesh.Name = "btReflesh";
+            this.btReflesh.Size = new System.Drawing.Size(39, 42);
+            this.btReflesh.TabIndex = 21;
+            this.btReflesh.Text = "🔄\r\n";
+            this.btReflesh.UseVisualStyleBackColor = true;
+            this.btReflesh.Click += new System.EventHandler(this.btReflesh_Click);
             // 
             // btdeath
             // 
@@ -382,7 +382,7 @@ namespace RssReader {
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btdeath);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btReflesh);
             this.Controls.Add(this.btAllClear);
             this.Controls.Add(this.btClear);
             this.Controls.Add(this.lbinfomation);
@@ -400,9 +400,12 @@ namespace RssReader {
             this.Controls.Add(this.lbRssTitle);
             this.Controls.Add(this.btGet);
             this.Controls.Add(this.tbUrl);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
             this.Text = "サイト検索";
             this.MaximumSizeChanged += new System.EventHandler(this.btGet_Click);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -433,7 +436,7 @@ namespace RssReader {
         private System.Windows.Forms.Label lbinfomation;
         private System.Windows.Forms.Button btClear;
         private System.Windows.Forms.Button btAllClear;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btReflesh;
         private System.Windows.Forms.Button btdeath;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbAtoName;
